@@ -3,21 +3,49 @@ import { useEffect, useState } from 'react';
 
 const Hero = () => {
     const [text, setText] = useState('');
-    const fullText = 'FRONT-END DEVELOPER';
+    const [phraseIndex, setPhraseIndex] = useState(0);
+    const [isDeleting, setIsDeleting] = useState(false);
+
+    const phrases = [
+        'FRONT-END DEVELOPER',
+        'REACT & TYPESCRIPT SPECIALIST',
+        'NEXT.JS & UI ARCHITECT',
+        'LOW-LEVEL SYSTEMS ENTHUSIAST',
+    ];
 
     useEffect(() => {
-        let index = 0;
-        const interval = setInterval(() => {
-            if (index <= fullText.length) {
-                setText(fullText.slice(0, index));
-                index++;
-            } else {
-                clearInterval(interval);
-            }
-        }, 100);
+        const currentPhrase = phrases[phraseIndex];
+        let timer;
 
-        return () => clearInterval(interval);
-    }, []);
+        if (!isDeleting) {
+            // Typing characters
+            if (text.length < currentPhrase.length) {
+                timer = setTimeout(() => {
+                    setText(currentPhrase.slice(0, text.length + 1));
+                }, 90);
+            } else {
+                // Pause at complete word before starting to delete
+                timer = setTimeout(() => {
+                    setIsDeleting(true);
+                }, 1800);
+            }
+        } else {
+            // Deleting characters
+            if (text.length > 0) {
+                timer = setTimeout(() => {
+                    setText(currentPhrase.slice(0, text.length - 1));
+                }, 45);
+            } else {
+                // Done deleting: pause briefly, switch to next phrase, start typing
+                timer = setTimeout(() => {
+                    setIsDeleting(false);
+                    setPhraseIndex((prev) => (prev + 1) % phrases.length);
+                }, 350);
+            }
+        }
+
+        return () => clearTimeout(timer);
+    }, [text, isDeleting, phraseIndex]);
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -84,13 +112,17 @@ const Hero = () => {
                             color: 'var(--text-primary)',
                             marginBottom: '1.5rem',
                             fontWeight: 600,
+                            minHeight: '2.4rem',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
                         }}
                     >
                         <span>{text}</span>
                         <motion.span
                             animate={{ opacity: [1, 0] }}
-                            transition={{ duration: 0.8, repeat: Infinity }}
-                            style={{ color: 'var(--accent-primary)' }}
+                            transition={{ duration: 0.7, repeat: Infinity, ease: 'linear' }}
+                            style={{ color: 'var(--accent-primary)', marginLeft: '2px' }}
                         >
                             _
                         </motion.span>

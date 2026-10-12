@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
+import Lenis from 'lenis';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
@@ -8,30 +9,65 @@ import Interactive from './components/Interactive';
 import Contact from './components/Contact';
 import Navigation from './components/Navigation';
 import GridOverlay from './components/GridOverlay';
+import IntroScreen from './components/IntroScreen';
 import './index.css';
 
 function App() {
-  const [theme, setTheme] = useState('dark');
+  const [introFinished, setIntroFinished] = useState(false);
   const { scrollYProgress } = useScroll();
   
-  // Parallax effect for background
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+  // Smooth spring physics for scroll progress and parallax movements
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
+  // Soft subtle parallax effect for background glows
+  const backgroundY = useTransform(smoothProgress, [0, 1], ['0%', '40%']);
+
+  // Inertial smooth scroll damping via Lenis:
+  // - duration: 1.5s adds weighted cinematic inertia
+  // - wheelMultiplier: 0.7 prevents the user from blitzing through sections too quickly
   useEffect(() => {
-    // Set initial theme
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
+    const lenis = new Lenis({
+      duration: 1.5,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 0.7,
+      touchMultiplier: 1.2,
+      infinite: false,
+    });
 
-  const toggleTheme = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(newTheme);
-    document.documentElement.setAttribute('data-theme', newTheme);
-  };
+    window.__lenis = lenis;
+
+    let rafId;
+    function raf(time) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+      delete window.__lenis;
+    };
+  }, []);
 
   return (
     <div className="app">
+      {/* Intro Screen Overlay */}
+      <AnimatePresence>
+        {!introFinished && (
+          <IntroScreen onComplete={() => setIntroFinished(true)} />
+        )}
+      </AnimatePresence>
+
       <GridOverlay />
-      <Navigation theme={theme} toggleTheme={toggleTheme} />
+      <Navigation showNav={introFinished} />
       
       {/* Progress Bar */}
       <motion.div
@@ -43,19 +79,23 @@ function App() {
           height: '3px',
           background: 'linear-gradient(90deg, var(--accent-primary), var(--accent-secondary))',
           transformOrigin: '0%',
-          scaleX: scrollYProgress,
+          scaleX: smoothProgress,
           zIndex: 9999,
         }}
       />
 
-      <main>
+      <motion.main
+        initial={{ opacity: 0, y: 30 }}
+        animate={introFinished ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+      >
         <Hero />
         <About />
         <Skills />
         <Projects />
         <Interactive />
         <Contact />
-      </main>
+      </motion.main>
 
       {/* Floating Background Elements */}
       <motion.div

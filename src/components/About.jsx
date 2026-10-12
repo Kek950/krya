@@ -55,7 +55,7 @@ const About = () => {
                                 }}
                                 variants={itemVariants}
                             >
-                                I'm Azamat, a front-end and software engineer who transforms complex ideas into elegant,
+                                I'm kekich, a front-end and software engineer who transforms complex ideas into elegant,
                                 high-performance digital experiences. With a deep mastery of modern web technologies—from React and TypeScript to Next.js, Vite, and SCSS/Tailwind—I build interfaces that are lightning-fast, reactive, and pixel-perfect.
                             </motion.p>
 
@@ -100,7 +100,7 @@ const About = () => {
 
                             <ul style={{ listStyle: 'none', fontSize: '1.1rem' }}>
                                 {[
-                                    { label: 'Name', value: 'Azamat Bayadilov' },
+                                    { label: 'Name', value: 'kekich' },
                                     { label: 'Focus', value: 'React / Next.js / TypeScript' },
                                     { label: 'Specialty', value: 'UI/UX & Systems Eng' },
                                     { label: 'Email', value: 'azamatbayadilov49@gmail.com' },

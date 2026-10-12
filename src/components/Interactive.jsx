@@ -11,7 +11,7 @@ const Interactive = () => {
 
     const codeLines = [
         'const developer = {',
-        '  name: "Azamat Bayadilov",',
+        '  name: "kekich",',
         '  handle: "kryakich (@azzmattt)",',
         '  stack: ["React", "TypeScript", "Next.js", "Vite", "SCSS", "C"],',
         '  status: "Shipping clean code & low-level wonders",',
@@ -391,7 +391,7 @@ const Interactive = () => {
                                         marginBottom: '2rem',
                                     }}
                                 >
-                                    Congratulations! You discovered Azamat's rubber duck debugging terminal. Legend says that explaining your x86 Protected Mode faults and Slick slider breakpoints to this duck instantly resolves all segmentation faults.
+                                    Congratulations! You discovered kekich's rubber duck debugging terminal. Legend says that explaining your x86 Protected Mode faults and Slick slider breakpoints to this duck instantly resolves all segmentation faults.
                                 </p>
 
                                 <motion.button

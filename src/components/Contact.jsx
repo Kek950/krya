@@ -216,7 +216,7 @@ const Contact = () => {
                                 color: 'var(--text-muted)',
                             }}
                         >
-                            © {new Date().getFullYear()} Azamat Bayadilov. Built with React + Vite + Framer Motion
+                            © {new Date().getFullYear()} kekich. Built with React + Vite + Framer Motion
                         </p>
                         <motion.p
                             style={{

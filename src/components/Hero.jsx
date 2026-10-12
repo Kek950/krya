@@ -101,7 +101,7 @@ const Hero = () => {
                             letterSpacing: '-0.02em',
                         }}
                     >
-                        AZAMAT BAYADILOV
+                        KEKICH
                     </motion.h1>
 
                     <motion.div

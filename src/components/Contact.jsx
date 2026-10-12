@@ -66,7 +66,7 @@ const Contact = () => {
                             whileTap={{ scale: 0.95 }}
                         >
                             <FaTelegram />
-                            Telegram (@azzmattt)
+                            Telegram
                         </motion.a>
 
                         <motion.a
@@ -79,7 +79,7 @@ const Contact = () => {
                             whileTap={{ scale: 0.95 }}
                         >
                             <FiMail />
-                            azamatbayadilov49@gmail.com
+                            Gmail
                         </motion.a>
                     </motion.div>
 

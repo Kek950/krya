@@ -67,7 +67,7 @@ const About = () => {
                                 }}
                                 variants={itemVariants}
                             >
-                                Beyond front-end craft, I bridge the gap between polished user experiences and deep low-level mechanics: dissecting operating systems, writing x86 assembly and C kernels, designing digital circuits in Logisim, and optimizing build pipelines.
+                                Beyond front-end craft, I bridge the gap between polished user experiences and deep low-level mechanics: dissecting operating systems, writing x86 assembly and C kernels, and optimizing modern build pipelines.
                             </motion.p>
 
                             <motion.p

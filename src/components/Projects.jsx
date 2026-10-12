@@ -33,28 +33,12 @@ const Projects = () => {
             clue: 'Press `~` or type `duck` anywhere... trust me.',
         },
         {
-            title: 'Logisim Circuit Simulator & Logic Gates',
-            description: 'Digital logic circuits, 3-bit ripple counters, latches, flip-flops, multiplexers, and synthetic schematic parsing with headless automation.',
-            tags: ['Digital Logic', 'Java', 'Logisim', 'Python', 'Computer Architecture'],
-            image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop',
-            github: 'https://github.com/Kek950',
-            live: 'https://github.com/Kek950',
-        },
-        {
             title: 'Krya Portfolio Engine & Cyber-Interface',
             description: 'Futuristic responsive personal web hub built with Vite, React, Framer Motion, cyber-grid overlays, dynamic theme switching, and interactive physics playground.',
             tags: ['React', 'TypeScript', 'Vite', 'Framer Motion', 'Figma'],
             image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&h=600&fit=crop',
             github: 'https://github.com/Kek950',
             live: '#hero',
-        },
-        {
-            title: 'JARVIS Local Neural AI & Second Brain',
-            description: 'Local GPU voice assistant running Ollama Qwen2.5 on RTX 3050 and dual-vault Obsidian memory integration with real-time speech and tool execution.',
-            tags: ['Python', 'Ollama', 'Obsidian', 'Speech Recognition', 'Fast-Path NLP'],
-            image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=600&fit=crop',
-            github: 'https://github.com/Kek950',
-            live: 'https://github.com/Kek950',
         },
     ];
 

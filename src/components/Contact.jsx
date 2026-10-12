@@ -70,7 +70,7 @@ const Contact = () => {
                         </motion.a>
 
                         <motion.a
-                            href="mailto:azamatbayadilov49@gmail.com"
+                            href="mailto:kekichdev@gmail.com"
                             className="btn btn-secondary contact-btn"
                             whileHover={{
                                 scale: 1.05,

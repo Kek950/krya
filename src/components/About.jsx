@@ -103,7 +103,7 @@ const About = () => {
                                     { label: 'Name', value: 'kekich' },
                                     { label: 'Focus', value: 'React / Next.js / TypeScript' },
                                     { label: 'Specialty', value: 'UI/UX & Systems Eng' },
-                                    { label: 'Email', value: 'azamatbayadilov49@gmail.com' },
+                                    { label: 'Email', value: 'kekichdev@gmail.com' },
                                     { label: 'Telegram', value: '@azzmattt' },
                                     { label: 'Status', value: 'Open to Opportunities' },
                                 ].map((fact, index) => (
